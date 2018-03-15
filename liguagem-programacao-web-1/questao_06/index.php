@@ -1,3 +1,6 @@
+<?php 
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,5 +20,11 @@
         <input type="text" name="tempo" ><br>
         <button type="submit">Calcular</button>
     </form>
+    <?php if(isset($_SESSION['jurosTotal'])): ?>
+        <p>O valor do Juros a pagar é: R$  <?php echo $_SESSION['jurosTotal']; ?></p>
+    <?php elseif(isset($_SESSION['msg'])): ?>
+        <p style="color: red;"><?php echo $_SESSION['msg']; ?></p> 
+    <?php endif; ?>
+    <?php unset($_SESSION['jurosTotal']); session_destroy(); ?>       
 </body>
 </html>
