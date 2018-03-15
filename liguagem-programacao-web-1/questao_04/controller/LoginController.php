@@ -1,24 +1,34 @@
 <?php
+session_start();
 
-include_once("../model/Login.php");
-
-if(!empty($_POST['username']) && !empty($_POST['password'])){
-    $login = new Login();
-    $login->setUsername($_POST['username']);
-    $login->setPassword($_POST['password']);
-
+function login($user, $senha){
     $atenticacao = [
         'username'=>'teoria',
         'password'=>'pratica'
     ];
-    if($login->getPassword() == $atenticacao['password'] && $login->getUsername() == $atenticacao['username']){
-        session_start;
-        $_SESSION['autenticado'] = true;
+    
+    if($senha == $atenticacao['password'] && $user == $atenticacao['username']){
+        $_SESSION['user'] = $user;
         header("Location: ../area-privada/sucesso.php");
     }else{
+        session_destroy();
         header("Location: ../erro-autenticacao.php");
     }
+}
+
+function logout(){
+    session_destroy();
+    header("Location: ../index.php");
+}
+
+if(isset($_POST['sair'])){
+    unset($_POST['sair']);
+    logout();
+}else if(!empty($_POST['username']) && !empty($_POST['password'])){
+    login($_POST['username'],$_POST['password']);
+
 }else{
     header("Location: ../erro-autenticacao.php");
 }
+
 

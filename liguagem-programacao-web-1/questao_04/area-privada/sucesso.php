@@ -1,5 +1,11 @@
 <?php
     session_start();
+
+    if(!isset($_SESSION['user'])== true){
+        unset($_SESSION['user']);
+        session_destroy();
+        header("Location: ../index.php");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -11,6 +17,12 @@
     <title>Document</title>
 </head>
 <body>
-    <p>Sucesso. Você esta logado.</p>
+    <div style="text-align: center;">
+        <p style="color: green;">Sucesso. Usuairo: <?php echo $_SESSION['user'];?> você esta logado.</p>
+        <form action="../controller/LoginController.php" method="post">
+            <input type="hidden" name="sair">
+            <button type="submit">Sair</button>
+        </form>
+    </div>
 </body>
 </html>
