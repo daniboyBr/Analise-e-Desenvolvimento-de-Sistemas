@@ -25,14 +25,10 @@ public class Matricula {
 		JTextField tfDisciplina = new JTextField();
 		JTextArea taComentario = new JTextArea();
 		
-		frame.setTitle("Utilizando JTextComponent");
+
 		Container intermediario = frame.getContentPane();
 		intermediario.setLayout(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(540, 400);
-		frame.setVisible(true);
-		
-		
+
 		painelBranco.setLayout(null);
 		painelBranco.setBounds(10, 10, 510, 340);
 		painelBranco.setBackground(Color.WHITE);
@@ -100,6 +96,11 @@ public class Matricula {
 		taComentario.setWrapStyleWord(true);
 		taComentario.setBounds(20,30,430,87);
 		painelAmarelo.add(taComentario);
+		
+		frame.setTitle("Utilizando JTextComponent");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(540, 400);
+		frame.setVisible(true);
 	}
 	
 }
