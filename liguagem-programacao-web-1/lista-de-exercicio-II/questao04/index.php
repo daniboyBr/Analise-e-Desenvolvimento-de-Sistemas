@@ -64,9 +64,9 @@ $clientes = buscar();
                         </tr>
                     </thead>
                     <tbody>
-                    <?php if(!isset($clientes) && empty($clientes)):?>
-                        <tr>
-                            <td colspan="6" class="text-danger"><strong>Nenhum usuário cadastrao!</strong></td>
+                    <?php if(isset($clientes) && empty($clientes)):?>
+                        <tr class="alert-danger text-center">
+                            <td colspan="8" class="text-danger"><strong>Nenhum usuário cadastrado!</strong></td>
                         </tr>
                     <?php else: ?>
                         <?php foreach ($clientes as $cliente): ?>
@@ -80,10 +80,7 @@ $clientes = buscar();
                                 <td><?php echo $cliente->telefone;?></td>
                                 <td><a href="cliente-update.php?id=<?php echo $cliente->id?>" class="btn btn-warning"><span class="glyphicon glyphicon-edit"></span></a></td>
                                 <td>
-                                    <form action="src/Cliente.php" method="post">
-                                        <input type="hidden" value="<?php echo $cliente->id;?>" name="id" />
-                                        <button type="submit" class="btn btn-danger" name="remover"><span class="glyphicon glyphicon-trash"></span></button>
-                                    </form>
+                                    <a class="btn btn-danger" data-toggle="modal" data-target="#myModal" onclick="parseClienteId(<?php echo $cliente->id;?>)"><span class="glyphicon glyphicon-trash"></span></a>
                                 </td>
                             <tr>
                         <?php endforeach;?>
@@ -92,8 +89,40 @@ $clientes = buscar();
                 </table>
             </div>
         </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Excluir Clienter</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Tem certeza que deseja excluir o cliente?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <form action="src/Cliente.php" method="post">
+                            <input type="hidden" value="" name="id" id="cliente-id"/>
+                            <button type="submit" class="btn btn-danger" name="remover">Remover</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
     </div>
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script>
+        function parseClienteId(id) {
+            document.getElementById("cliente-id").value = ""+id;
+        }
+    </script>
 </body>
 </html>

@@ -21,13 +21,12 @@
             <div class="error-template">
                 <h1>
                     Oops!</h1>
-                <h2>
-                    ERRO 404 Pagina não Encontrada</h2>
-                <div class="error-details">
-                    <?php
+                <h2><?php
                     if(isset($_GET['msg']) && !empty($_GET['msg']))
                         echo $_GET['msg'];
-                    ?>
+                    ?> </h2>
+                <div class="error-details">
+
                 </div>
                 <div class="error-actions">
                     <a href="index.php" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>

@@ -1,5 +1,5 @@
 <?php
-require_once "src/Cliente.php";
+require_once "src/ClienteDAO.php";
 
 $cliente = load_cliente($_GET['id']);
 
@@ -19,7 +19,7 @@ $cliente = load_cliente($_GET['id']);
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3 well">
-                <h1 class="text-center">Cadatro de Clientes</h1>
+                <h1 class="text-center">Alterar Clientes</h1>
                 <form action="src/Cliente.php" method="post">
                     <input type="hidden" name="id" value="<?php echo $cliente->id;?>">
                     <div class="form-group">
